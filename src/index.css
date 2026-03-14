@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@500;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg:          #f0f2f7;
+  --sidebar-bg:  #0d0f14;
+  --sidebar-w:   240px;
+  --sidebar-w-c: 64px;
+  --accent:      #5b5bd6;
+  --accent2:     #0ea5e9;
+  --card:        #ffffff;
+  --border:      rgba(0,0,0,0.07);
+  --sidebar-border: rgba(255,255,255,0.07);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  font-size: 15px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: #1a1d2e;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar        { width: 4px; height: 4px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: #d1d5db; border-radius: 99px; }
+
+/* ── Keyframes ── */
+@keyframes fadeUp   { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+@keyframes slideR   { from { opacity:0; transform:translateX(-12px); } to { opacity:1; transform:translateX(0); } }
+@keyframes spinA    { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+@keyframes floatY   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes toastIn  { from{opacity:0;transform:translateY(14px) scale(.96)} to{opacity:1;transform:translateY(0) scale(1)} }
+@keyframes liveDot  { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.4);opacity:.6} }
+@keyframes shimmer  { 0%{background-position:-600px 0} 100%{background-position:600px 0} }
+@keyframes ripple   { 0%{transform:scale(0);opacity:.5} 100%{transform:scale(4);opacity:0} }
+@keyframes countUp  { from{opacity:0;transform:scale(.8)} to{opacity:1;transform:scale(1)} }
+
+/* ── Utility animation classes ── */
+.fu  { animation: fadeUp  .45s cubic-bezier(.22,1,.36,1) forwards; }
+.fi  { animation: fadeIn  .3s ease forwards; }
+.sr  { animation: slideR  .35s cubic-bezier(.22,1,.36,1) forwards; }
+.spn { animation: spinA   .9s linear infinite; }
+.flt { animation: floatY  3.5s ease-in-out infinite; }
+.ti  { animation: toastIn .38s cubic-bezier(.22,1,.36,1) forwards; }
+
+.d1{animation-delay:.05s;opacity:0} .d2{animation-delay:.10s;opacity:0}
+.d3{animation-delay:.15s;opacity:0} .d4{animation-delay:.20s;opacity:0}
+.d5{animation-delay:.25s;opacity:0} .d6{animation-delay:.30s;opacity:0}
+.d7{animation-delay:.35s;opacity:0} .d8{animation-delay:.40s;opacity:0}
+
+/* ── Sidebar nav active ── */
+.nav-active {
+  background: linear-gradient(100deg, rgba(91,91,214,.22) 0%, rgba(14,165,233,.10) 100%);
+  border: 1px solid rgba(91,91,214,.3);
+  color: #fff !important;
+}
+.nav-active svg { color: #a5b4fc; }
+
+/* ── Card hover ── */
+.card-lift { transition: transform .18s ease, box-shadow .18s ease; }
+.card-lift:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(0,0,0,.09) !important; }
+
+/* ── Stat card shimmer ── */
+.stat-card::before {
+  content:''; position:absolute; inset:0; opacity:0;
+  background: linear-gradient(110deg, transparent 38%, rgba(255,255,255,.16) 50%, transparent 62%);
+  background-size: 600px 100%;
+  transition: opacity .25s;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.stat-card:hover::before { opacity:1; animation: shimmer 1s ease; }
+
+/* ── Typography ── */
+.font-display { font-family: 'Cabinet Grotesk', sans-serif; }
+
+/* ── Glass effect ── */
+.glass {
+  
+}
+
+/* ── Sidebar tooltip ── */
+.sidebar-tooltip {
+  position: absolute; left: calc(100% + 12px); top: 50%; transform: translateY(-50%);
+  background: #1a1d2e; color: #fff; font-size: 11px; font-weight: 600;
+  padding: 5px 10px; border-radius: 8px; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity .15s;
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+.sidebar-btn:hover .sidebar-tooltip { opacity: 1; }
